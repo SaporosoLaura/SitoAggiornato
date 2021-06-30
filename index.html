@@ -1,0 +1,282 @@
+<!DOCTYPE html>       <!--http://localhost/emailprova/index.html#home-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saporoso WebSite</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="contact-form.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+</head>
+<body>
+    
+    <script type="text/javascript">
+        // -------   Mail Send ajax
+    
+         $(document).ready(function() {
+            var form = $('#myForm'); // contact form
+            var submit = $('.submit-btn'); // submit button
+            var alert = $('.alert-msg'); // alert div for show alert message
+    
+            // form submit event
+            form.on('submit', function(e) {
+                e.preventDefault(); // prevent default form submit
+    
+                $.ajax({
+                    url: 'index.php', // form action url
+                    type: 'POST', // form submit method get/post
+                    dataType: 'html', // request type html/json/xml
+                    data: form.serialize(), // serialize form data
+                    beforeSend: function() {
+                        alert.fadeOut();
+                        submit.html('Sending....'); // change submit button text
+                    },
+                    success: function(data) {
+                        alert.html(data).fadeIn(); // fade in response data
+                        form.trigger('reset'); // reset form
+                        submit.attr("style", "display: none !important");; // reset submit button text
+                    },
+                    error: function(e) {
+                        console.log(e)
+                    }
+                });
+            });
+        });
+    </script>
+
+
+    <!--Navbar Section-->
+    <nav class="navbar">
+        <div class="navbar__container">
+            <a href="#home" id="navbar__logo">SAPOROSO</a>
+            <div class="navbar__toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+                
+                
+            </div>
+            <ul class="navbar__menu">
+                <li class="navbar__item">
+                    <a href="#home" class="navbar__links" id="home-page">Home</a>
+                </li>
+                <li class="navbar__item">
+                    <a href="#about" class="navbar__links" id="about-page">Chi sono</a>
+                </li>
+                <li class="navbar__item">
+                    <a href="#progetti" class="navbar__links" id="progects-page">Progetti</a>
+                </li>
+                <li class="navbar__btn">
+                    <a href="#contattami" class="button" id="contact-me">Contattami</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+         <!-- Hero Section-->
+    <div class="hero" id="home">
+        <div class="hero__container">
+
+
+            <h1 class="hero__heading">Ciao, sono <span>Laura </span></h1>
+            <p class="hero__description">Benvenuto sul mio primo sito web</p>
+          <!--  <button class="main__btn"><a href="#">Explore</a></button>   -->
+        </div> 
+    </div>
+
+         <!-- about section-->
+    <div class="main" id="about">
+        <div class="main__container">
+            <div class="main__img--container">
+                <div class="main__img--card"> <img src="fotoLaura.jpg" alt=""></div>
+            </div>
+            <div class="main__content">
+                <h1>Studio per diventare</h1>
+                <h2>Web Developer e Web Designer</h2>
+                <p>Scarica il mio curriculm per saperne di più</p>
+
+               <a href="CV.pdf" download="newfilename" >
+                   <button type="button" class="main__btn" download >Download CV</button>
+                </a> 
+              
+            </div>
+        </div>
+    </div>
+    
+      <!-- sezione progetti-->
+      <div class="progetti" id="progetti">
+          <h1>I miei progetti</h1>
+          <div class="progetti__wrapper">
+              <div class="progetti__card"> 
+                  <h2>My website</h2>
+                  <p>HTML, CSS, Javascript</p>
+                  <div class="progetti__btn"><button>Scopri Adesso</button></div>
+              </div>
+              
+              <div class="progetti__card">
+                <h2>My MobileApp</h2>
+                <p>Web design, Figma</p>
+                <div class="progetti__btn"><button>Scopri Adesso</button></div>
+            </div>
+
+            <div class="progetti__card">
+                <h2>Progetto 3</h2>
+                <p>Vedi Progetto 3</p>
+                <div class="progetti__btn"><button>Scopri Adesso</button></div>
+            </div>
+
+            <div class="progetti__card">
+                <h2>Progetto 4</h2>
+                <p>Vedi Progetto 4</p>
+                <div class="progetti__btn"><button>Scopri Adesso</button></div>
+            </div>
+
+
+          </div>
+      </div>
+
+      <!--feature scection-->
+
+
+
+
+      <div class="main" id="contattami">
+        <div class="main__container">
+          
+
+            <div class="fcf-body">
+
+                <div id="fcf-form">
+                <h3 class="fcf-h3">Contattami</h3>
+            
+                <form id="fcf-form-id" class="fcf-form-class" method="post" action="contact-form-process.php">
+                    
+                    <div class="fcf-form-group">
+                        <label for="Name" class="fcf-label">Il tuo nome</label>
+                        <div class="fcf-input-group">
+                            <input type="text" id="Name" name="Name" class="fcf-form-control" required>
+                        </div>
+                    </div>
+            
+                    <div class="fcf-form-group">
+                        <label for="Email" class="fcf-label">La tua email</label>
+                        <div class="fcf-input-group">
+                            <input type="email" id="Email" name="Email" class="fcf-form-control" required>
+                        </div>
+                    </div>
+            
+                    <div class="fcf-form-group">
+                        <label for="Message" class="fcf-label">Il tuo messaggio</label>
+                        <div class="fcf-input-group">
+                            <textarea id="Message" name="Message" class="fcf-form-control" rows="6" maxlength="3000" required></textarea>
+                        </div>
+                    </div>
+            
+                    <div class="fcf-form-group">
+                        <button type="submit" id="fcf-button" class="main__btn"><a href="contattami"></a>Invia messaggio</a></button>
+                    </div>
+                </div>
+               
+            
+                   
+            
+                </form>
+                </div>
+                <div class="main__img--container">
+                    <div class="main__img--card" id="card-2"><i class="fas fa-users"></i></div>
+            </div>
+           
+                
+            </div>
+           
+                
+
+
+        </div>
+    </div>
+
+  <!--Footer section-->
+  
+  <div class="footer__container">
+      <div class="footer__links">
+          <div class="footer__link--wrapper">
+              <div class="footer__link--items">
+                  <h2>Informazioni</h2>
+                  <a href onclick="myFunction()">Privacy policy</a>
+                  <a href onclick="myFunction2()">Cookie policy</a>
+                  <a href onclick="myFunction3()">Termini e condizioni</a>
+                 
+              </div>
+              <script>
+                function myFunction() {
+                  alert("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.");
+                }
+                function myFunction2() {
+                  alert("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.");
+                }
+                function myFunction3() {
+                  alert("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.");
+                }
+                </script>
+             <!-- <div class="footer__link--items">
+                <h2>About me</h2>
+                <a href="/sing-up">How it works</a>
+                <a href="/sing-up">Testimonialsk</a>
+                <a href="/sing-up">Careers</a>
+                <a href="/sing-up">Terms of service</a>
+            </div>
+        </div>
+    
+        <div class="footer__link--wrapper">
+            <div class="footer__link--items">
+                <h2>Videos</h2>
+                <a href="/sing-up">How it works</a>
+                <a href="/sing-up">Testimonialsk</a>
+                <a href="/sing-up">Careers</a>
+                <a href="/sing-up">Terms of service</a>
+            </div>
+            <div class="footer__link--items">
+                <h2>Social Media</h2>
+                <a href="">Instagram</a>
+                <a href="/">Facebook</a>
+                <a href="/">Youtube</a>
+                <a href="https://www.linkedin.com/in/laura-saporoso-a558a2167/">Linkedin</a>
+            </div> -->
+        </div> 
+          </div>
+         <section class="social__media">
+             <div class="social__media--wrap">
+                 <div class="footer__logo">
+                     <a href="#home" id="footer__logo">SAPOROSO</a>
+                 </div>
+              <p class="website__rights">© SAPOROSO 2021. All rights reserved</p>
+
+              <div class="social__icons">
+                  <a href="https://www.facebook.com/laura.saporoso" class="social__icon--link" target="_blank">  <!--target blank per far aprire la pagina su una nuova scheda-->
+                    <i class="fab fa-facebook"></i></a>
+                    <a href="https://www.instagram.com/laura_saporoso/" class="social__icon--link" target="_blank">
+                        <i class="fab fa-instagram"></i></a>
+                        <a href="https://www.youtube.com/" class="social__icon--link" target="_blank">
+                            <i class="fab fa-youtube"></i></a>
+                            <a href="https://www.linkedin.com/in/laura-saporoso-a558a2167/" class="social__icon--link" target="_blank">
+                                <i class="fab fa-linkedin"></i></a>
+              </div>
+             </div>
+            
+         </section>      
+        
+  </div>
+
+
+
+    <script src="app.js"></script>
+</body>
+</html>
+    
+
+
+
+
+</body>
+</html>
